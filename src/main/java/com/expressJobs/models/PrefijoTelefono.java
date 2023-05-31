@@ -10,6 +10,8 @@ import javax.persistence.Table;
 @Table(name="PrefijoTelefono")
 public class PrefijoTelefono {
 
+	// Cambio de prueba por Jhoel
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPrefijo;
