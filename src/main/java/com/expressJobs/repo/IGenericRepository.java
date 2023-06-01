@@ -14,5 +14,8 @@ public interface IGenericRepository extends JpaRepository<PrefTelefono, Long>{
 
 	
     @Query(nativeQuery = true, value = "CALL obtenerPrefTelefono()")
+    
+    
+    
     List<PrefTelefono> obtenerPrefTelefono();
 }
