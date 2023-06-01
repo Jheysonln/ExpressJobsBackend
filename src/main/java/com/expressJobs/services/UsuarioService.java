@@ -18,7 +18,7 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
     
-    public CompletableFuture<Boolean> ejecutarCrearUsuario(String nombreUsuario, String apellidoUsuario, String  correoUsuario, String  contraseniaUsuario, String  prefijoUsuario, String  telefonoUsuario,	 String  idDocumentoUsuario, String  documentoUsuario, Integer idDepartamento, Integer idProvincia, Integer idDistrito, String  direccion, Integer idRol, Integer idEspecialidad) {
+    public CompletableFuture<Boolean> ejecutarCrearUsuario(String nombreUsuario, String apellidoUsuario, String  correoUsuario, String  contraseniaUsuario, String  prefijoUsuario, String  telefonoUsuario,	 String  idDocumentoUsuario, String  documentoUsuario, int idDepartamento, int idProvincia, int idDistrito, String  direccion, int idRol, int idEspecialidad) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 Boolean exito = usuarioRepository.crearUsuario(nombreUsuario,  apellidoUsuario,   correoUsuario,   contraseniaUsuario,   prefijoUsuario,   telefonoUsuario,	   idDocumentoUsuario,   documentoUsuario,  idDepartamento,  idProvincia,  idDistrito,   direccion,  idRol, idEspecialidad);
@@ -55,7 +55,7 @@ public class UsuarioService {
         });
     }
     
-    public CompletableFuture<Boolean> ejecutarActualizarUsuario(Long idUsuario, String nombreUsuario, String apellidoUsuario, String  correoUsuario, String  contraseniaUsuario, String  prefijoUsuario, String  telefonoUsuario,	 String  idDocumentoUsuario, String  documentoUsuario, Integer idDepartamento, Integer idProvincia, Integer idDistrito, String  direccion, Integer idRol, Integer idEspecialidad) {
+    public CompletableFuture<Boolean> ejecutarActualizarUsuario(Long idUsuario,String nombreUsuario, String apellidoUsuario, String  correoUsuario, String  contraseniaUsuario, String  prefijoUsuario, String  telefonoUsuario,	 String  idDocumentoUsuario, String  documentoUsuario, int idDepartamento, int idProvincia, int idDistrito, String  direccion, int idRol, int idEspecialidad) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 Boolean exito = usuarioRepository.actualizarUsuario(idUsuario, nombreUsuario,  apellidoUsuario,   correoUsuario,   contraseniaUsuario,   prefijoUsuario,   telefonoUsuario,	   idDocumentoUsuario,   documentoUsuario,  idDepartamento,  idProvincia,  idDistrito,   direccion,  idRol, idEspecialidad);

@@ -18,51 +18,51 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>{
 	
     @Procedure(name = "crearUsuario", outputParameterName = "exito")
     Boolean crearUsuario(
-            @Param("usuario_nombre") String nombreUsuario,
-            @Param("usuario_apellido") String apellidoUsuario,
-            @Param("usuario_correo") String correoUsuario,
-            @Param("usuario_contrasenia") String contraseniaUsuario,
-            @Param("usuario_prefijo") String prefijoUsuario,
-            @Param("usuario_telefono") String telefonoUsuario,
-            @Param("usuario_idDocumento") String idDocumentoUsuario,
-            @Param("usuario_documento") String documentoUsuario,
-            @Param("usuario_idDepartamento") Integer idDepartamento,
-            @Param("usuario_idProvincia") Integer idProvincia,
-            @Param("usuario_idDistrito") Integer idDistrito,
-            @Param("usuario_direccion") String  direccion,
-            @Param("usuario_idRol") Integer idRol,
-            @Param("usuario_idEspecialidad") Integer idEspecialidad
+            @Param("pNom_usuario") String nom_usuario,
+            @Param("pApe_usuario") String ape_usuario,
+            @Param("pCorreo_usuario") String correo_usuario,
+            @Param("pPassword_usuario") String password_usuario,
+            @Param("pId_prefijo_telefono") String id_prefijo_telefono,
+            @Param("pTelefono_usuario") String telefono_usuario,
+            @Param("pId_tipodocumento") String id_tipodocumento,
+            @Param("pNum_documento") String num_documento,
+            @Param("pId_Depa") int id_Depa,
+            @Param("pId_provincia") int id_provincia,
+            @Param("pId_dist") int id_dist,
+            @Param("pDirec_usuario") String  direc_usuario,
+            @Param("pId_rol") int id_rol,
+            @Param("pId_especialidad") int id_especialidad
        
     );
 
     
     @Procedure(name = "actualizarUsuario", outputParameterName = "exito")
     Boolean actualizarUsuario(
-            @Param("usuario_id") Long idUsuario,
-            @Param("usuario_nombre") String nombreUsuario,
-            @Param("usuario_apellido") String apellidoUsuario,
-            @Param("usuario_correo") String correoUsuario,
-            @Param("usuario_contrasenia") String contraseniaUsuario,
-            @Param("usuario_prefijo") String prefijoUsuario,
-            @Param("usuario_telefono") String telefonoUsuario,
-            @Param("usuario_idDocumento") String idDocumentoUsuario,
-            @Param("usuario_documento") String documentoUsuario,
-            @Param("usuario_idDepartamento") Integer idDepartamento,
-            @Param("usuario_idProvincia") Integer idProvincia,
-            @Param("usuario_idDistrito") Integer idDistrito,
-            @Param("usuario_direccion") String  direccion,
-            @Param("usuario_idRol") Integer idRol,
-            @Param("usuario_idEspecialidad") Integer idEspecialidad
+            @Param("pId_usuario") Long id_usuario,
+            @Param("pNom_usuario") String nom_usuario,
+            @Param("pApe_usuario") String ape_usuario,
+            @Param("pCorreo_usuario") String correo_usuario,
+            @Param("pPassword_usuario") String password_usuario,
+            @Param("pId_prefijo_telefono") String id_prefijo_telefono,
+            @Param("pTelefono_usuario") String telefono_usuario,
+            @Param("pId_tipodocumento") String id_tipodocumento,
+            @Param("pNum_documento") String num_documento,
+            @Param("pId_Depa") int id_Depa,
+            @Param("pId_provincia") int id_provincia,
+            @Param("pId_dist") int id_dist,
+            @Param("pDirec_usuario") String  direc_usuario,
+            @Param("pId_rol") int id_rol,
+            @Param("pId_especialidad") int id_especialidad
     );
 
     @Procedure(name = "eliminarUsuario", outputParameterName = "exito")
     Boolean eliminarUsuario(
-            @Param("usuario_id") Long id
+            @Param("pId_usuario") Long id
     );
 
     @Query(nativeQuery = true, value = "CALL obtenerUsuarios()")
     List<Usuario> obtenerUsuarios();
 
-    @Query(nativeQuery = true, value = "CALL obtenerUsuarioPorId(:usuario_id)")
-    List<Usuario> obtenerUsuariosPorId(@Param("usuario_id") Long idUsuario);
+    @Query(nativeQuery = true, value = "CALL obtenerUsuarioPorId(:pId_usuario)")
+    List<Usuario> obtenerUsuariosPorId(@Param("pId_usuario") Long id_usuario);
 }

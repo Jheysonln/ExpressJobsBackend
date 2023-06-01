@@ -35,20 +35,20 @@ public class UsuarioController {
 	
     @PostMapping("/crearUsuario")
     public CompletableFuture<Boolean> crearUsuario(@RequestBody UsuarioRequest request) {
-        String nombreUsuario = request.getNombreUsuario();
-        String apellidoUsuario = request.getApellidoUsuario();
-        String  correoUsuario = request.getCorreoUsuario();
-        String  contraseniaUsuario = request.getContraseniaUsuario();
-        String  prefijoUsuario = request.getPrefijoUsuario();
-        String  telefonoUsuario = request.getTelefonoUsuario();
-        String  idDocumentoUsuario = request.getIdDocumentoUsuario();
-        String  documentoUsuario = request.getDocumentoUsuario();
-        Integer idDepartamento = request.getIdDepartamento();
-        Integer idProvincia = request.getIdProvincia();
-        Integer idDistrito = request.getIdDistrito();
-        String  direccion = request.getDireccion();
-        Integer idRol = request.getIdRol();
-        Integer idEspecialidad =request.getidEspecialidad();
+        String nombreUsuario = request.getNom_usuario();
+        String apellidoUsuario = request.getApe_usuario();
+        String  correoUsuario = request.getCorreo_usuario();
+        String  contraseniaUsuario = request.getPassword_usuario();
+        String  prefijoUsuario = request.getId_prefijo_telefono();
+        String  telefonoUsuario = request.getTelefono_usuario();
+        String  idDocumentoUsuario = request.getId_tipodocumento();
+        String  documentoUsuario = request.getNum_documento();
+        Integer idDepartamento = request.getId_Depa();
+        Integer idProvincia = request.getId_provincia();
+        Integer idDistrito = request.getId_dist();
+        String  direccion = request.getDirec_usuario();
+        Integer idRol = request.getId_rol();
+        Integer idEspecialidad =request.getId_especialidad();
 
         
         
@@ -92,20 +92,20 @@ public class UsuarioController {
 
     @PutMapping("/actualizarUsuario/{id}")
     public CompletableFuture<Boolean> actualizarUsuario(@PathVariable Long idUsuario, @RequestBody UsuarioRequest request) {
-        String nombreUsuario = request.getNombreUsuario();
-        String apellidoUsuario = request.getApellidoUsuario();
-        String  correoUsuario = request.getCorreoUsuario();
-        String  contraseniaUsuario = request.getContraseniaUsuario();
-        String  prefijoUsuario = request.getPrefijoUsuario();
-        String  telefonoUsuario = request.getTelefonoUsuario();
-        String  idDocumentoUsuario = request.getIdDocumentoUsuario();
-        String  documentoUsuario = request.getDocumentoUsuario();
-        Integer idDepartamento = request.getIdDepartamento();
-        Integer idProvincia = request.getIdProvincia();
-        Integer idDistrito = request.getIdDistrito();
-        String  direccion = request.getDireccion();
-        Integer idRol = request.getIdRol();
-        Integer idEspecialidad =request.getidEspecialidad();
+        String nombreUsuario = request.getNom_usuario();
+        String apellidoUsuario = request.getApe_usuario();
+        String  correoUsuario = request.getCorreo_usuario();
+        String  contraseniaUsuario = request.getPassword_usuario();
+        String  prefijoUsuario = request.getId_prefijo_telefono();
+        String  telefonoUsuario = request.getTelefono_usuario();
+        String  idDocumentoUsuario = request.getId_tipodocumento();
+        String  documentoUsuario = request.getNum_documento();
+        Integer idDepartamento = request.getId_Depa();
+        Integer idProvincia = request.getId_provincia();
+        Integer idDistrito = request.getId_dist();
+        String  direccion = request.getDirec_usuario();
+        Integer idRol = request.getId_rol();
+        Integer idEspecialidad =request.getId_especialidad();
 
         return usuarioService.ejecutarActualizarUsuario(idUsuario, nombreUsuario ,
         		apellidoUsuario ,
