@@ -1,37 +1,54 @@
 package com.expressJobs.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Provincia")
+@Table(name = "provincia")
 public class Provincia {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idProv;
-	private String provincia;
-	private Long idDepa;
+	@Column(name = "id_provincia")
+	private int id_provincia;
 	
-	public Long getIdProv() {
-		return idProv;
+	@Column(name = "nom_provincia")
+	private String nom_provincia;
+	
+	@Column(name = "id_depa")
+	private int id_depa;
+
+	public Provincia() {
 	}
-	public void setIdProv(Long idProv) {
-		this.idProv = idProv;
+
+	public Provincia(int id_provincia, String nom_provincia, int id_depa) {
+		this.id_provincia = id_provincia;
+		this.nom_provincia = nom_provincia;
+		this.id_depa = id_depa;
 	}
-	public String getProvincia() {
-		return provincia;
+
+	public int getId_provincia() {
+		return id_provincia;
 	}
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+
+	public void setId_provincia(int id_provincia) {
+		this.id_provincia = id_provincia;
 	}
-	public Long getIdDepa() {
-		return idDepa;
+
+	public String getNom_provincia() {
+		return nom_provincia;
 	}
-	public void setIdDepa(Long idDepa) {
-		this.idDepa = idDepa;
+
+	public void setNom_provincia(String nom_provincia) {
+		this.nom_provincia = nom_provincia;
+	}
+
+	public int getId_depa() {
+		return id_depa;
+	}
+
+	public void setId_depa(int id_depa) {
+		this.id_depa = id_depa;
 	}
 }

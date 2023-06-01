@@ -1,9 +1,6 @@
 package com.expressJobs.request;
 
 public class UsuarioRequest {
-		
-	
-	
 
 	private String nombreUsuario;
     private String apellidoUsuario;

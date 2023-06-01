@@ -18,8 +18,6 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
     
-    
-
     public CompletableFuture<Boolean> ejecutarCrearUsuario(String nombreUsuario, String apellidoUsuario, String  correoUsuario, String  contraseniaUsuario, String  prefijoUsuario, String  telefonoUsuario,	 String  idDocumentoUsuario, String  documentoUsuario, Integer idDepartamento, Integer idProvincia, Integer idDistrito, String  direccion, Integer idRol, Integer idEspecialidad) {
         return CompletableFuture.supplyAsync(() -> {
             try {

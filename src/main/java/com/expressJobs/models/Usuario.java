@@ -12,12 +12,12 @@ public class Usuario {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idUsuario;
-    private String nombreUsuario;
-    private String apellidoUsuario;
+	private Long 	idUsuario;
+    private String 	nombreUsuario;
+    private String	apellidoUsuario;
     private String  correoUsuario;
     private String  contraseniaUsuario;
-    private String  prefijoUsuario;
+    private String	prefijoUsuario;
     private String  telefonoUsuario;
 	private String  idDocumentoUsuario;
     private String  documentoUsuario;
@@ -25,7 +25,7 @@ public class Usuario {
     private Integer idProvincia;
     private Integer idDistrito;
     private String  direccion;
-    private Integer idRol;
+    private Integer  idRol;
     private Integer idEspecialidad;
     
     

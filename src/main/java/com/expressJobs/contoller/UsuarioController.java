@@ -67,7 +67,6 @@ public class UsuarioController {
         		idRol ,
         		idEspecialidad)
                 .exceptionally(ex -> {
-
                     return false; 
                 });
     }
