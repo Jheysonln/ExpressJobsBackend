@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.expressJobs.models.Departamento;
 import com.expressJobs.models.Distrito;
-import com.expressJobs.models.PrefTelefono;
-import com.expressJobs.models.Producto;
+import com.expressJobs.models.Especialidad;
+import com.expressJobs.models.PrefijoTelefono;
 import com.expressJobs.models.Provincia;
+import com.expressJobs.models.TipoDocumento;
+import com.expressJobs.models.TipoPago;
 import com.expressJobs.services.GenericService;
 
 @RestController
@@ -28,17 +28,50 @@ public class GenericController {
     public GenericController(GenericService genericService) {
         this.genericService = genericService;
     }
-	
     
-    @GetMapping("/obtenerPrefTelefonos")
+    @GetMapping("/obtenerEspecialidad/{id}")
     @ResponseBody
-    public CompletableFuture<List<PrefTelefono>> obtenerPrefTelefono() {
-        return genericService.ejecutarObtenerPrefTelefono()
-                .exceptionally(ex -> {
-                    // Manejar la excepción
-                    // Por ejemplo, registrar el error o lanzar una excepción personalizada
-                    return Collections.emptyList(); // Devolver una lista vacía en caso de error
-                });
+    public CompletableFuture<List<Especialidad>> obtenerEspecialidad(@PathVariable String id) {
+    	 return genericService.ejecutarObtenerEspecialidad(id)
+                 .exceptionally(ex -> {
+                     // Manejar la excepción
+                     // Por ejemplo, registrar el error o lanzar una excepción personalizada
+                     return Collections.emptyList(); // Devolver una lista vacía en caso de error
+                 });
+    }
+    
+    @GetMapping("/obtenerPrefijoTelefono/{id}")
+    @ResponseBody
+    public CompletableFuture<List<PrefijoTelefono>> obtenerPrefijoTelefono(@PathVariable String id) {
+    	 return genericService.ejecutarObtenerPrefijoTelefono(id)
+                 .exceptionally(ex -> {
+                     // Manejar la excepción
+                     // Por ejemplo, registrar el error o lanzar una excepción personalizada
+                     return Collections.emptyList(); // Devolver una lista vacía en caso de error
+                 });
+    }
+    
+    
+    @GetMapping("/obtenerTipoPago/{id}")
+    @ResponseBody
+    public CompletableFuture<List<TipoPago>> obtenerTipoPago(@PathVariable String id) {
+    	 return genericService.ejecutarObtenerTipoPago(id)
+                 .exceptionally(ex -> {
+                     // Manejar la excepción
+                     // Por ejemplo, registrar el error o lanzar una excepción personalizada
+                     return Collections.emptyList(); // Devolver una lista vacía en caso de error
+                 });
+    }
+    
+    @GetMapping("/obtenerTipoDocumento/{id}")
+    @ResponseBody
+    public CompletableFuture<List<TipoDocumento>> obtenerTipoDocuento(@PathVariable String id) {
+    	 return genericService.ejecutarObtenerTipoDocuento(id)
+                 .exceptionally(ex -> {
+                     // Manejar la excepción
+                     // Por ejemplo, registrar el error o lanzar una excepción personalizada
+                     return Collections.emptyList(); // Devolver una lista vacía en caso de error
+                 });
     }
     
     @GetMapping("/obtenerDepartamentos")
