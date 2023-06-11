@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.expressJobs.models.Departamento;
 import com.expressJobs.models.Distrito;
 import com.expressJobs.models.Generico;
+import com.expressJobs.models.Menus;
 import com.expressJobs.models.PrefTelefono;
 import com.expressJobs.models.Producto;
 import com.expressJobs.models.Provincia;
+import com.expressJobs.request.DashboardRequest;
 import com.expressJobs.request.GenericoRequest;
 import com.expressJobs.services.GenericoService;
 
@@ -133,7 +135,16 @@ public class GenericoController {
                 });
     }
     
-    
+    @PostMapping("/obtenerDashboard")
+    public CompletableFuture<List<Menus>> obtenerDistrito(@RequestBody DashboardRequest requestBody) {
+        try {
+            String des_rol = requestBody.getDes_rol();
+            CompletableFuture<List<Menus>> menus = genericoService.ejecutarObtenerMenus(des_rol);
+            return menus;
+        } catch (Exception ex) {
+            return CompletableFuture.completedFuture(Collections.emptyList());
+        }
+    }
     
     
     
