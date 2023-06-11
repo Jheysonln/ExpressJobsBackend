@@ -80,7 +80,7 @@ public class UsuarioController {
                 });
     }
     
-    @GetMapping("/obtenerUsuarioId/{id}")
+    @GetMapping("/obtenerUsuarioId/{idusuario}")
     public CompletableFuture<ResponseEntity<Usuario>> obtenerUsuarioPorId(@PathVariable Long idusuario) {
         return usuarioService.ejecutarObtenerUsuarioPorId(idusuario)
                 .thenApply(usuario -> ResponseEntity.ok(usuario))
@@ -90,7 +90,7 @@ public class UsuarioController {
                 });
     }
 
-    @PutMapping("/actualizarUsuario/{id}")
+    @PutMapping("/actualizarUsuario/{idUsuario}")
     public CompletableFuture<Boolean> actualizarUsuario(@PathVariable Long idUsuario, @RequestBody UsuarioRequest request) {
         String nombreUsuario = request.getNom_usuario();
         String apellidoUsuario = request.getApe_usuario();

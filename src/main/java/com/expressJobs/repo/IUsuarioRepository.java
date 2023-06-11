@@ -65,4 +65,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>{
 
     @Query(nativeQuery = true, value = "CALL obtenerUsuarioPorId(:pId_usuario)")
     List<Usuario> obtenerUsuariosPorId(@Param("pId_usuario") Long id_usuario);
+    
+    @Query(nativeQuery = true, value = "CALL obtenerUsuarioPorEmailYPassword()")
+    List<Usuario> obtenerUsuarioPorEmailYPassword(@Param("pEmail") String email, @Param("pPassword") String password);
 }

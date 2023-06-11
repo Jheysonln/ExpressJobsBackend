@@ -77,4 +77,19 @@ public class UsuarioService {
         });
     }
     
+    public CompletableFuture<Usuario> ejecutarObtenerUsuarioPorEmailYPassword(String email, String password) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                List<Usuario> usuarios = usuarioRepository.obtenerUsuarioPorEmailYPassword(email, password);
+                if (!usuarios.isEmpty()) {
+                    return usuarios.get(0);
+                } else {
+                    throw new RuntimeException("No se encontró ningún usuario con el email especificado");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Error al obtener el usuario por su email", e);
+            }
+        });
+    }
+    
 }
