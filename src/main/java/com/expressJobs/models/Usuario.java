@@ -1,88 +1,99 @@
 package com.expressJobs.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
 
-	@Id
-	@Column(name = "id_usuario")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_usuario;
+    @Id
+    @Column(name = "id_usuario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_usuario;
 
-	@Column(name = "nom_usuario")
-	private String nom_usuario;
+    @Column(name = "username")
+    private String username;
 
-	@Column(name = "ape_usuario")
-	private String ape_usuario;
+    @Column(name = "ape_usuario")
+    private String ape_usuario;
 
-	@Column(name = "correo_usuario")
-	private String correo_usuario;
+    @Column(name = "email",nullable = false,unique = true)
+    private String email;
 
-	@Column(name = "password_usuario")
-	private String password_usuario;
+    @Column(name = "password")
+    private String password;
+    
+    @Column(name = "password_confirm")
+    private String password_confirm;
 
-	@Column(name = "id_prefijo_telefono")
-	private String id_prefijo_telefono;
+    @Column(name = "id_prefijo_telefono")
+    private int id_prefijo_telefono;
 
-	@Column(name = "telefono_usuario")
-	private String telefono_usuario;
+    @Column(name = "telefono_usuario")
+    private String telefono_usuario;
 
-	@Column(name = "id_tipodocumento")
-	private String id_tipodocumento;
+    @Column(name = "id_tipodocumento")
+    private int id_tipodocumento;
 
-	@Column(name = "num_documento")
-	private String num_documento;
+    @Column(name = "num_documento")
+    private String num_documento;
 
-	@Column(name = "id_Depa")
-	private int id_Depa;
+    @Column(name = "id_Depa")
+    private int id_Depa;
 
-	@Column(name = "id_provincia")
-	private int id_provincia;
+    @Column(name = "id_provincia")
+    private int id_provincia;
 
-	@Column(name = "id_dist")
-	private int id_dist;
+    @Column(name = "id_dist")
+    private int id_dist;
 
-	@Column(name = "direc_usuario")
-	private String direc_usuario;
+    @Column(name = "direc_usuario")
+    private String direc_usuario;
+    
+    @Column(name = "id_especialidad")
+    private int id_especialidad;
+    
+    @Column(name = "fecha_registro")
+    private Date fecha_registro;
 
-	@Column(name = "id_rol")
-	private int id_rol;
+    @Column(name = "id_rol")
+    private Long id_rol;
 
-	@Column(name = "id_especialidad")
-	private int id_especialidad;
-
-	public Usuario() {
-
-	}
-
-	public Usuario(Long id_usuario, String nom_usuario, String ape_usuario, String correo_usuario,
-			String password_usuario, String id_prefijo_telefono, String telefono_usuario, String id_tipodocumento,
-			String num_documento, int id_Depa, int id_provincia, int id_dist, String direc_usuario, int id_rol,
-			int id_especialidad) {
-		super();
-		this.id_usuario = id_usuario;
-		this.nom_usuario = nom_usuario;
-		this.ape_usuario = ape_usuario;
-		this.correo_usuario = correo_usuario;
-		this.password_usuario = password_usuario;
-		this.id_prefijo_telefono = id_prefijo_telefono;
-		this.telefono_usuario = telefono_usuario;
-		this.id_tipodocumento = id_tipodocumento;
-		this.num_documento = num_documento;
-		this.id_Depa = id_Depa;
-		this.id_provincia = id_provincia;
-		this.id_dist = id_dist;
-		this.direc_usuario = direc_usuario;
-		this.id_rol = id_rol;
-		this.id_especialidad = id_especialidad;
-	}
+    @Transient
+    private List<Rol> ListRoles = new ArrayList<>();
+   
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "usuarios_roles",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id")
+    )
+    private Set<Rol> roles = new HashSet<>();
 
 	public Long getId_usuario() {
 		return id_usuario;
@@ -92,12 +103,12 @@ public class Usuario {
 		this.id_usuario = id_usuario;
 	}
 
-	public String getNom_usuario() {
-		return nom_usuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setNom_usuario(String nom_usuario) {
-		this.nom_usuario = nom_usuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getApe_usuario() {
@@ -108,27 +119,35 @@ public class Usuario {
 		this.ape_usuario = ape_usuario;
 	}
 
-	public String getCorreo_usuario() {
-		return correo_usuario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCorreo_usuario(String correo_usuario) {
-		this.correo_usuario = correo_usuario;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getPassword_usuario() {
-		return password_usuario;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassword_usuario(String password_usuario) {
-		this.password_usuario = password_usuario;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getId_prefijo_telefono() {
+	public String getPassword_confirm() {
+		return password_confirm;
+	}
+
+	public void setPassword_confirm(String password_confirm) {
+		this.password_confirm = password_confirm;
+	}
+
+	public int getId_prefijo_telefono() {
 		return id_prefijo_telefono;
 	}
 
-	public void setId_prefijo_telefono(String id_prefijo_telefono) {
+	public void setId_prefijo_telefono(int id_prefijo_telefono) {
 		this.id_prefijo_telefono = id_prefijo_telefono;
 	}
 
@@ -140,11 +159,11 @@ public class Usuario {
 		this.telefono_usuario = telefono_usuario;
 	}
 
-	public String getId_tipodocumento() {
+	public int getId_tipodocumento() {
 		return id_tipodocumento;
 	}
 
-	public void setId_tipodocumento(String id_tipodocumento) {
+	public void setId_tipodocumento(int id_tipodocumento) {
 		this.id_tipodocumento = id_tipodocumento;
 	}
 
@@ -188,14 +207,6 @@ public class Usuario {
 		this.direc_usuario = direc_usuario;
 	}
 
-	public int getId_rol() {
-		return id_rol;
-	}
-
-	public void setId_rol(int id_rol) {
-		this.id_rol = id_rol;
-	}
-
 	public int getId_especialidad() {
 		return id_especialidad;
 	}
@@ -204,4 +215,36 @@ public class Usuario {
 		this.id_especialidad = id_especialidad;
 	}
 
+	public Date getFecha_registro() {
+		return fecha_registro;
+	}
+
+	public void setFecha_registro(Date fecha_registro) {
+		this.fecha_registro = fecha_registro;
+	}
+
+	public Long getId_rol() {
+		return id_rol;
+	}
+
+	public void setId_rol(Long id_rol) {
+		this.id_rol = id_rol;
+	}
+
+	public List<Rol> getListRoles() {
+		return ListRoles;
+	}
+
+	public void setListRoles(List<Rol> listRoles) {
+		ListRoles = listRoles;
+	}
+
+	public Set<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Rol> roles) {
+		this.roles = roles;
+	}
+	
 }
