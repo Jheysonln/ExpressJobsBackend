@@ -15,7 +15,6 @@ import com.expressJobs.models.SubMenus;
 import com.expressJobs.models.Usuario;
 import com.expressJobs.repo.IDepartamento;
 import com.expressJobs.repo.IDistrito;
-import com.expressJobs.repo.IGenericRepository;
 import com.expressJobs.repo.IMenuRepository;
 import com.expressJobs.repo.IProvincia;
 import com.expressJobs.repo.SubMenusRepository;
@@ -23,33 +22,20 @@ import com.expressJobs.repo.SubMenusRepository;
 @Service
 public class GenericService {
 
-    private final IGenericRepository genericRepository;
     private final IDepartamento depaRepository;
     private final IProvincia provRepository;
     private final IDistrito distRepository;
     private final IMenuRepository menuRepository;
     private final SubMenusRepository submenuRepository;
     
-    public  GenericService(IGenericRepository genericRepository, IDepartamento depaRepository, 
+    public  GenericService(IDepartamento depaRepository, 
     		IProvincia provRepository, IDistrito distRepository,IMenuRepository menuRepository,
     		SubMenusRepository submenuRepository) {
-        this.genericRepository =  genericRepository;
         this.depaRepository = depaRepository;
         this.provRepository = provRepository;
         this.distRepository = distRepository;
         this.menuRepository = menuRepository;
         this.submenuRepository = submenuRepository;
-    }
-
-    public CompletableFuture<List<PrefTelefono>> ejecutarObtenerPrefTelefono() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                List<PrefTelefono> preftelefonos =  genericRepository.obtenerPrefTelefono();
-                return preftelefonos;
-            } catch (Exception e) {
-                throw new RuntimeException("Error al obtener los prefijos de los telefonos", e);
-            }
-        });
     }
     
     public CompletableFuture<List<Departamento>> ejecutarObtenerDepartamento() {

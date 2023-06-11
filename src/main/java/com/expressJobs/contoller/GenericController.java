@@ -40,18 +40,6 @@ public class GenericController {
     public GenericController(GenericService genericService) {
         this.genericService = genericService;
     }
-	
-    
-    @GetMapping("/obtenerPrefTelefonos")
-    @ResponseBody
-    public CompletableFuture<List<PrefTelefono>> obtenerPrefTelefono() {
-        return genericService.ejecutarObtenerPrefTelefono()
-                .exceptionally(ex -> {
-                    // Manejar la excepción
-                    // Por ejemplo, registrar el error o lanzar una excepción personalizada
-                    return Collections.emptyList(); // Devolver una lista vacía en caso de error
-                });
-    }
     
     @GetMapping("/obtenerDepartamentos")
     @ResponseBody

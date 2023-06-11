@@ -171,12 +171,4 @@ public class UsuarioController {
 	            return ResponseEntity.notFound().build();
 	        }
 	    }
-
-//	@GetMapping("/obtenerUsuariosPaginado")
-//	  public ResponseEntity<Page<Usuario>> obtenerUsuariosPaginado(
-//	            @RequestParam(defaultValue = "0") int pagina,
-//	            @RequestParam(defaultValue = "10") int registrosPorPagina) {
-//	        Page<Usuario> usuarios = usuarioService.obtenerUsuariosPaginado(pagina, registrosPorPagina);
-//	        return new ResponseEntity<>(usuarios, HttpStatus.OK);
-//	    }
 }
