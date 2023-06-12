@@ -53,12 +53,13 @@ public class UsuarioController {
 		this.usuarioService = usuarioService;
 	}
 
-	@GetMapping("/obtenerUsuarios")
+	@GetMapping("/obtenerUsuariosPaginado")
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USERWORKER')")
 	@ResponseBody
-	public CompletableFuture<List<Usuario>> obtenerUsuarios() {
+	public CompletableFuture<List<Usuario>> obtenerUsuariosPaginado(@RequestParam("pagina") int pagina, @RequestParam("registrosPorPagina") int registrosPorPagina) {
+	//public CompletableFuture<List<Usuario>> obtenerUsuariosPaginado() {
 		try {
-			CompletableFuture<List<Usuario>> user = usuarioService.ejecutarObtenerUsuarios();
+			CompletableFuture<List<Usuario>> user = usuarioService.ejecutarObtenerUsuariosPaginado(pagina, registrosPorPagina);
 			return user;
 		} catch (Exception ex) {
 			return CompletableFuture.completedFuture(Collections.emptyList());

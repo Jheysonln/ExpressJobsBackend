@@ -78,8 +78,11 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>{
     List<Usuario> obtenerUsuariosPorId(@Param("pId_usuario") Long id_usuario);
     
 
-    @Query(nativeQuery = true, value = "CALL obtenerUsuarios()")
-    List<Usuario> obtenerUsuarios();
+    /*@Query(nativeQuery = true, value = "CALL obtenerUsuariosPaginado(:p_pageNumber, :p_pageSize)")
+    List<Usuario> obtenerUsuariosPaginado(@Param("p_pageNumber") int pagina, @Param("p_pageSize") int registrosPorPagina);*/
+    
+    @Procedure(name = "obtenerUsuariosPaginado")
+    List<Usuario> obtenerUsuariosPaginado(@Param("p_pageNumber") int p_pageNumber, @Param("p_pageSize") int p_pageSize);
     
     Usuario findByUsername(String username);
     Usuario findByEmail(String email);

@@ -28,7 +28,7 @@ import com.expressJobs.request.GenericoRequest;
 import com.expressJobs.services.GenericoService;
 
 @RestController
-@RequestMapping("/api/generic")
+@RequestMapping("/api/generico")
 public class GenericoController {
 	
     private final GenericoService genericoService;
@@ -136,7 +136,7 @@ public class GenericoController {
     }
     
     @PostMapping("/obtenerDashboard")
-    public CompletableFuture<List<Menus>> obtenerDistrito(@RequestBody DashboardRequest requestBody) {
+    public CompletableFuture<List<Menus>> obtenerDashboard(@RequestBody DashboardRequest requestBody) {
         try {
             String des_rol = requestBody.getDes_rol();
             CompletableFuture<List<Menus>> menus = genericoService.ejecutarObtenerMenus(des_rol);
@@ -145,14 +145,5 @@ public class GenericoController {
             return CompletableFuture.completedFuture(Collections.emptyList());
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.expressJobs.models.PaginationResult;
+import com.expressJobs.models.PrefijoTelefono;
 import com.expressJobs.models.Rol;
 import com.expressJobs.models.Usuario;
 import com.expressJobs.repo.IRolesRepository;
@@ -49,24 +50,16 @@ public class UsuarioService {
 			}
 		});
 	}
-
-	public CompletableFuture<List<Usuario>> ejecutarObtenerUsuarios() {
-		return CompletableFuture.supplyAsync(() -> {
-			try {
-				List<Usuario> usuarios = usuarioRepository.obtenerUsuarios();
-				System.out.println(usuarios);
-				// Iterate over the usuarios and fetch the roles for each usuario
-				for (Usuario usuario : usuarios) {
-					Long idRol = usuario.getId_rol();
-					List<Rol> roles = rolRepository.obtenerRoles(idRol);
-					usuario.setListRoles(roles);
-				}
-
-				return usuarios;
-			} catch (Exception e) {
-				throw new RuntimeException("Error al obtener los usuarios", e);
-			}
-		});
+	
+	public CompletableFuture<List<Usuario>> ejecutarObtenerUsuariosPaginado(int pagina, int registrosPorPagina) {
+		 return CompletableFuture.supplyAsync(() -> {
+	            try {
+	                List<Usuario> user = usuarioRepository.obtenerUsuariosPaginado(pagina, registrosPorPagina);
+	                return user;
+	            } catch (Exception e) {
+	                throw new RuntimeException("Error al obtener la lista de usuarios...", e);
+	            }
+	        });
 	}
 
 //    public CompletableFuture<List<Rol>> ejecutarObtenerRol(Long idRol) {
